@@ -27,6 +27,6 @@ module.exports = class TestCommand extends BaseCommand {
       }
     }
 
-    message.reply(img, chat.id._serialized, { sendMediaAsSticker: true });
+    await message.reply(img, chat.id._serialized, { sendMediaAsSticker: true });
   }
 };

@@ -1,10 +1,10 @@
 const BaseCommand = require("../../utils/structures/BaseCommand");
 const { MessageMedia } = require("whatsapp-web.js");
-const photo2anime = require("photo2anime");
+const makemeazombie = require("makemeazombie");
 
 module.exports = class AnimeCommand extends BaseCommand {
   constructor() {
-    super("Anime", "casual", ["anime"]);
+    super("Zombie", "casual", ["zombie"]);
   }
 
   async run(client, message, args, contact, chat) {
@@ -31,20 +31,18 @@ module.exports = class AnimeCommand extends BaseCommand {
         .getProfilePicUrl()
         .catch((err) => message.reply("Ocorreu um erro!"));
     }
-    const anime = new photo2anime();
+    const zombie = new makemeazombie();
     message.reply("Processando...");
-    anime.on("ready", () => {
-      anime
-        .transform({ photo: img.data })
-        .then((image) => {
-          const data = new MessageMedia("image/png", image);
+    zombie
+      .transform({ photo: img.data })
+      .then((image) => {
+        const data = new MessageMedia("image/png", image);
 
-          message.reply(data);
-        })
-        .catch((err) => {
-          console.log(err);
-          message.reply("Um erro ocorreu ao processar a imagem!");
-        });
-    });
+        message.reply(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        message.reply("Um erro ocorreu ao processar a imagem!");
+      });
   }
 };
