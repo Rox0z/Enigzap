@@ -6,13 +6,15 @@ module.exports = class MediaToStickerCommand extends BaseCommand {
   }
 
   async run(client, message, args, contact, chat) {
+    var name = args.join(" ").split("|")[0];
+    var author = args.join(" ").split("|")[1];
     var img;
     if (message.hasMedia) {
       img = await message
         .downloadMedia()
         .catch((err) => message.reply("Ocorreu um erro!"));
       await message.reply(img, chat.id._serialized, {
-        sendMediaAsSticker: true,
+        sendMediaAsSticker: true
       });
     } else if (message.hasQuotedMsg) {
       const msg = await message

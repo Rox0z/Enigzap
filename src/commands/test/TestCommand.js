@@ -1,11 +1,18 @@
 const BaseCommand = require("../../utils/structures/BaseCommand");
 const { MessageMedia } = require("whatsapp-web.js");
+const imageToBase64 = require("image-to-base64");
+const webpInfo = require("animated-webp-info");
 const snekfetch = require("node-superfetch");
 const photo2anime = require("photo2anime");
+const { EmojiAPI } = require("emoji-api");
+const sizeOf = require("image-size");
 const { resolve } = require("path");
 const Canvas = require("canvas");
 const moment = require("moment");
 const Jimp = require("jimp");
+const emoji = new EmojiAPI();
+
+const log = console.log;
 
 const processTime = (timestamp, now) => {
   return moment.duration(now - moment(timestamp * 1000)).asSeconds();
@@ -17,16 +24,11 @@ module.exports = class TestCommand extends BaseCommand {
   }
 
   async run(client, message, args, contact, chat) {
-    var img;
-    if (message.hasMedia) {
-      img = await message.downloadMedia();
-    } else if (message.hasQuotedMsg) {
-      const msg = await message.getQuotedMessage();
-      if (msg.hasMedia) {
-        img = await msg.downloadMedia();
-      }
-    }
-
-    await message.reply(img, chat.id._serialized, { sendMediaAsSticker: true });
+    let img = await emoji.get(args[0]);
+    var buff64 = await imageToBase64(img.images[4].url);
+    const data = new MessageMedia("image/png", buff64);
+    message.reply(data, chat.id._serialized, {
+      sendMediaAsSticker: true,
+    });
   }
 };
