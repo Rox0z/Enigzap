@@ -24,15 +24,17 @@
     "image-size": "^0.9.3",
     "image-to-base64": "^2.1.1",
     "jimp": "^0.16.1",
+    "libphonenumber-js": "^1.9.11",
     "makemeazombie": "^1.0.0",
     "moment": "^2.29.1",
     "node-emoji": "^1.10.0",
     "node-superfetch": "^0.1.11",
     "photo2anime": "^1.0.0",
+    "puppeteer": "^5.5.0",
     "qrcode-terminal": "^0.12.0",
     "webp-converter": "^2.3.1",
     "webpinfo": "^1.0.4",
-    "whatsapp-web.js": "^1.12.1"
+    "whatsapp-web.js": "^1.12.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

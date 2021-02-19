@@ -1,4 +1,5 @@
 const BaseEvent = require("../../utils/structures/BaseEvent");
+const parsePhoneNumber = require("libphonenumber-js");
 const moment = require("moment");
 var colors = require("colors");
 
@@ -9,6 +10,13 @@ module.exports = class MessageEvent extends BaseEvent {
 
   async run(client, message) {
     if (message.body.startsWith(client.prefix)) {
+      const phoneNumber = parsePhoneNumber(
+        `+${
+          message.from.includes("-")
+            ? message.from.split("-")[0]
+            : message.from.split("@")[0]
+        }`
+      );
       const contact = await message.getContact();
       const chat = await message.getChat();
       const [cmdName, ...cmdArgs] = message.body
@@ -18,10 +26,14 @@ module.exports = class MessageEvent extends BaseEvent {
       const command = client.commands.get(cmdName.toLowerCase());
       if (command) {
         console.log(
-          `[ ${moment().format("DD/M/YYYY  HH:mm:ss")} ] `.bold.yellow +
-            `[${command.name}]`.bold.underline.green +
+          "📩 " +
+            `[ ${moment().format("DD/M/YYYY  HH:mm:ss")} ] `.bold.yellow +
+            `[USER] `.bold.magenta +
+            `[${message.type.toUpperCase()}] `.bold.green +
+            `[${command.name}]`.bold.cyan +
             " Utilizado por: " +
-            `${contact.pushname}`.bold.italic.brightBlue +
+            `${contact.pushname} (${phoneNumber.formatInternational()})`.italic
+              .brightBlue +
             (chat.isGroup ? " em: " + `${chat.name}`.bold.red : "")
         );
         command.run(client, message, cmdArgs, contact, chat);

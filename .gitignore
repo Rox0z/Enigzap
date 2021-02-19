@@ -1,1 +1,4 @@
 node_modules
+session.json
+.vscode
+package-lock.json

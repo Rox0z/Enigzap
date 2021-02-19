@@ -1,15 +1,20 @@
 const { registerCommands, registerEvents } = require("./src/utils/registry");
 const { Client } = require("whatsapp-web.js");
+const moment = require("moment");
+var colors = require("colors");
 require("dotenv").config();
-const fs = require('fs');
+const fs = require("fs");
 
-const SESSION_FILE_PATH = './session.json';
+const SESSION_FILE_PATH = "./session.json";
 let sessionCfg;
 if (fs.existsSync(SESSION_FILE_PATH)) {
-    sessionCfg = require(SESSION_FILE_PATH);
+  sessionCfg = require(SESSION_FILE_PATH);
 }
 
-const client = new Client({ session: sessionCfg });
+const client = new Client({
+  session: sessionCfg,
+  puppeteer: { headless: true },
+});
 
 (async () => {
   client.auth = sessionCfg;
@@ -21,11 +26,11 @@ const client = new Client({ session: sessionCfg });
   await client.initialize();
 })();
 
-client.on('authenticated', (session) => {
-  sessionCfg=session;
+client.on("authenticated", (session) => {
+  sessionCfg = session;
   fs.writeFile(SESSION_FILE_PATH, JSON.stringify(session), function (err) {
-      if (err) {
-          console.error(err);
-      }
+    if (err) {
+      console.error(err);
+    }
   });
 });
