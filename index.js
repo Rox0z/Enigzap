@@ -13,7 +13,11 @@ if (fs.existsSync(SESSION_FILE_PATH)) {
 
 const client = new Client({
   session: sessionCfg,
-  puppeteer: { headless: true, args: ["--no-sandbox", "--disable-gpu"] },
+  puppeteer: {
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    ignoreDefaultArgs: ["--disable-extensions"],
+  },
 });
 
 (async () => {

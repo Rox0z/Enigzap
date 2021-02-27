@@ -21,6 +21,9 @@
     "dotenv": "^8.2.0",
     "emoji-api": "^1.0.2",
     "fluent-ffmpeg": "^2.1.2",
+    "gif-to-apng": "^0.1.2",
+    "gifencoder-forced-color": "^2.1.0",
+    "google-tts-api": "^2.0.1",
     "image-size": "^0.9.3",
     "image-to-base64": "^2.1.1",
     "jimp": "^0.16.1",
@@ -32,9 +35,10 @@
     "photo2anime": "^1.0.0",
     "puppeteer": "^5.5.0",
     "qrcode-terminal": "^0.12.0",
-    "webp-converter": "^2.3.1",
+    "text-to-image": "^2.4.4",
+    "webp-converter": "^2.3.3",
     "webpinfo": "^1.0.4",
-    "whatsapp-web.js": "^1.12.4"
+    "whatsapp-web.js": "^1.12.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
