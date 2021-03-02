@@ -14,8 +14,10 @@ if (fs.existsSync(SESSION_FILE_PATH)) {
 const client = new Client({
   session: sessionCfg,
   puppeteer: {
+    executablePath:
+      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
     ignoreDefaultArgs: ["--disable-extensions"],
   },
 });

@@ -12,13 +12,16 @@ module.exports = class EmojiToStickerCommand extends BaseCommand {
   async run(client, message, args, contact, chat) {
     if (!args[0]) {
       message.reply("você precisa usar junto de um emoji! exemplo +emoji 🌎");
-    } else if (args[0]){
+    } else if (args[0]) {
       let img = await emoji.get(args[0]);
-      var buff64 = await imageToBase64(img.images[4].url);
-      const data = new MessageMedia("image/png", buff64);
-      message.reply(data, chat.id._serialized, {
-        sendMediaAsSticker: true,
-      });
+
+      if (img.emoji != null) {
+        var buff64 = await imageToBase64(img.images[4].url);
+        const data = new MessageMedia("image/png", buff64);
+        message.reply(data, chat.id._serialized, {
+          sendMediaAsSticker: true,
+        });
+      }
     }
   }
 };

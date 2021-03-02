@@ -14,7 +14,7 @@ module.exports = class TextToStickerCommand extends BaseCommand {
   }
 
   async run(client, message, args, contact, chat) {
-    const fps = 15
+    const fps = 15;
     const texto = args.join(" ");
     if (!args) {
       return message.reply(
@@ -55,7 +55,7 @@ module.exports = class TextToStickerCommand extends BaseCommand {
           while (i < fps) {
             ctx.save();
             huetext = await text
-              .color([{ apply: "hue", params: [360/fps] }])
+              .color([{ apply: "hue", params: [360 / fps] }])
               .getBufferAsync(Jimp.MIME_PNG);
 
             ctext = await Canvas.loadImage(huetext);
@@ -66,7 +66,8 @@ module.exports = class TextToStickerCommand extends BaseCommand {
           GIF.finish();
 
           setTimeout(() => {
-            webp.gwebp(
+            webp
+              .gwebp(
                 "./media/sticker/sticker.gif",
                 "./media/sticker/sticker.webp",
                 "-q 80"
