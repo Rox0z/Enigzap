@@ -6,15 +6,17 @@ module.exports = class MediaToStickerCommand extends BaseCommand {
   }
 
   async run(client, message, args, contact, chat) {
-    var name = args.join(" ").split("|")[0];
-    var author = args.join(" ").split("|")[1];
+    var name = args.join(" ");
+    var author = "Demon BOT";
     var img;
     if (message.hasMedia) {
       img = await message
         .downloadMedia()
         .catch((err) => message.reply("Ocorreu um erro!"));
       await message.reply(img, chat.id._serialized, {
-        sendMediaAsSticker: true
+        sendMediaAsSticker: true,
+        stickerAuthor: author,
+        stickerName: name,
       });
     } else if (message.hasQuotedMsg) {
       const msg = await message
@@ -26,6 +28,8 @@ module.exports = class MediaToStickerCommand extends BaseCommand {
           .catch((err) => message.reply("Ocorreu um erro!"));
         await message.reply(img, chat.id._serialized, {
           sendMediaAsSticker: true,
+          stickerAuthor: author,
+          stickerName: name || "Feito por",
         });
       } else {
         await message.reply("Mensagem sem mídia!");

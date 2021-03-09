@@ -15,7 +15,7 @@ const client = new Client({
   session: sessionCfg,
   puppeteer: {
     executablePath:
-      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
     ignoreDefaultArgs: ["--disable-extensions"],

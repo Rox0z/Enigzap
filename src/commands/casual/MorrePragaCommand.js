@@ -33,7 +33,7 @@ module.exports = class MorrePragaCommand extends BaseCommand {
     var imgbuff = Buffer.from(img.data, "base64");
     const canvas = Canvas.createCanvas(714, 429);
     const ctx = canvas.getContext("2d");
-    const fundo = await Canvas.loadImage(resolve("src\\utils\\media\\praga.png"));
+    const fundo = await Canvas.loadImage(resolve("src/utils/media/praga.png"));
     const praga = await Canvas.loadImage(imgbuff).catch( err => console.log('ERRO AO CARREGAR IMAGEM'.red));
     ctx.drawImage(fundo, 0, 0);
     ctx.drawImage(praga, 78, 130, 190, 190);

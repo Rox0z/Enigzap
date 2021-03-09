@@ -24,11 +24,6 @@ module.exports = class TestCommand extends BaseCommand {
   }
 
   async run(client, message, args, contact, chat) {
-    let img = await emoji.get(args[0]);
-    var buff64 = await imageToBase64(img.images[4].url);
-    const data = new MessageMedia("image/png", buff64);
-    message.reply(data, chat.id._serialized, {
-      sendMediaAsSticker: true,
-    });
+    
   }
 };
