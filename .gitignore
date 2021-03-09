@@ -5,3 +5,4 @@ package-lock.json
 bot.zip
 .DS_Store
 .gitignore
+bckp.zshrc
