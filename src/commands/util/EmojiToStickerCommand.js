@@ -20,6 +20,8 @@ module.exports = class EmojiToStickerCommand extends BaseCommand {
         const data = new MessageMedia("image/png", buff64);
         message.reply(data, chat.id._serialized, {
           sendMediaAsSticker: true,
+          stickerAuthor: "Demon BOT",
+          stickerName: args[0]+" Feito por",
         });
       }
     }
