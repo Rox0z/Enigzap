@@ -1,4 +1,4 @@
-const BaseEvent = require("../../utils/structures/BaseEvent");
+const BaseEvent = require("../utils/structures/BaseEvent");
 const parsePhoneNumber = require("libphonenumber-js");
 const moment = require("moment");
 var colors = require("colors");
@@ -9,19 +9,16 @@ module.exports = class MessageEvent extends BaseEvent {
   }
 
   async run(client, message) {
-    if (message.body.startsWith(client.prefix)) {
+    if (message.body.startsWith('@everyone')) {
       const phoneNumber = parsePhoneNumber(
-        `+${
-          message.author
-            ? message.author.split("@")[0]
-            : message.from.includes("-")
-            ? message.from.split("-")[0]
-            : message.from.split("@")[0]
-        }`
+        `+${message.author
+          ? message.author.split("@")[0]
+          : message.from.includes("-")
+          ? message.from.split("-")[0]
+          : message.from.split("@")[0]}`
       );
       const contact = await message.getContact();
       const chat = await message.getChat();
-
       var isAdmin = false;
       chat.isGroup
         ? isAdmin = chat.participants.filter(
@@ -31,8 +28,9 @@ module.exports = class MessageEvent extends BaseEvent {
       const [cmdName, ...cmdArgs] = message.body
         .slice(client.prefix.length)
         .trim()
-        .split(/\s+/);
-      const command = client.commands.get(cmdName.toLowerCase());
+        .split(/\s+/); 
+
+      const command = client.commands.get('everyone');
       if (command) {
         console.log(
           "📩 " +

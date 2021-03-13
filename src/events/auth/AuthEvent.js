@@ -7,7 +7,7 @@ module.exports = class AuthEvent extends BaseEvent {
   }
 
   async run(client, session) {
-    const prettyFont = CFonts.render("ENIGZAP", {
+    const prettyFont = CFonts.render("Demon BOT", {
       font: "3d",
       //colors: ["greenBright", "black"],
       align: "center",
