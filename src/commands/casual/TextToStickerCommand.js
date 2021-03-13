@@ -10,6 +10,7 @@ module.exports = class TextToStickerommand extends BaseCommand {
 
   async run(client, message, args, contact, chat) {
     //-----------Init Canvas-------------
+    Canvas.registerFont("media/fonts/KGRedHands.ttf", { family: "KG Red Hands" });
     const canvas = Canvas.createCanvas(512, 512);
     const ctx = canvas.getContext("2d");
     //-----------Config Text-------------
@@ -38,15 +39,14 @@ module.exports = class TextToStickerommand extends BaseCommand {
 
     const data = new MessageMedia(
       "image/png",
-      canvas.toBuffer('image/png').toString('base64')
+      canvas.toBuffer("image/png").toString("base64")
     );
     setTimeout(() => {
-        message.reply(data, chat.id._serialized, {
-            sendMediaAsSticker: true,
-            stickerAuthor: "Demon BOT",
-            stickerName: "Feito por",
-          });
-      }, 500);
-    
+      message.reply(data, chat.id._serialized, {
+        sendMediaAsSticker: true,
+        stickerAuthor: "Demon BOT",
+        stickerName: "Feito por",
+      });
+    }, 500);
   }
 };

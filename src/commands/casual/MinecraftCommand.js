@@ -1,6 +1,6 @@
 const BaseCommand = require("../../utils/structures/BaseCommand");
 const { MessageMedia } = require("whatsapp-web.js");
-const { createCanvas, loadImage } = require("canvas");
+const { registerFont, createCanvas, loadImage } = require("canvas");
 
 module.exports = class BlackPinkStickerCommand extends BaseCommand {
   constructor() {
@@ -11,6 +11,7 @@ module.exports = class BlackPinkStickerCommand extends BaseCommand {
     if (args.join(" ").length > 25) {
       message.reply("Seu texto possui mais de 25 caracteres!");
     } else {
+      registerFont('media/fonts/Minecraftia-Regular.ttf', { family: 'Minecraftia' })
       //-----------Init Canvas-------------
       const canvas = createCanvas(1408, 256);
       const ctx = canvas.getContext("2d");

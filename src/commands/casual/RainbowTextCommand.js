@@ -22,7 +22,7 @@ module.exports = class RainbowTextCommand extends BaseCommand {
       );
     } else {
       var i = 0;
-
+      Canvas.registerFont('media/fonts/KGRedHands.ttf', { family: 'KG Red Hands' })
       const canvas = Canvas.createCanvas(512, 512);
       const ctx = canvas.getContext("2d");
 
